@@ -40,6 +40,22 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
     "prettier": "2.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{json,css,html,md}": [
+      "npx prettier --write '**/*.{json,css,html,md}' --ignore-path ./.prettierignore"
+    ],
+    "*.js": [
+      "npx prettier --write '*.js' --ignore-path ./.prettierignore",
+      "eslint --max-warnings=0 --ignore-pattern '!.eslintrc.js' ./src --ext .js "
+    ]
   }
 }
