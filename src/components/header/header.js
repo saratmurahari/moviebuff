@@ -51,8 +51,11 @@ const Header = () => {
     <header className={classnames(s.pageHeader)}>
       <div className={s.headerContent}>
         <nav className={s.navBlock}>
-          <div className={s.logo}>MOVIE BUFF</div>
-          <div className={s.logoIcon}></div>
+          <Link to="/">
+            <div className={s.logo}>MOVIE BUFF</div>
+            <div className={s.logoIcon}></div>
+          </Link>
+
           <ul className={s.navLinks}>
             {navData.map((nav) => (
               <li className={s.links} key={nav.id}>
@@ -68,7 +71,9 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-        <div>Login and other details</div>
+        <div className={s.loginButton}>
+          <Link to="/login">Login</Link>
+        </div>
       </div>
     </header>
   )
