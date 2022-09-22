@@ -16,3 +16,8 @@ html {
   padding: 0.375rem 0.75rem;
   cursor: pointer;
 }
+
+a {
+  color: #01b4e4;
+  text-decoration: none;
+}

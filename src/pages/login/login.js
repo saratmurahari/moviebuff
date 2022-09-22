@@ -1,47 +1,130 @@
 import s from './login.module.css'
 import Layout from '../../components/layout/layout'
-import { useState } from 'react'
+/* import { useState } from 'react' */
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { get, post } from '../../utils/api-utils'
 const LoginContent = () => {
-  const [uname, setUname] = useState('')
-  const [pwd, setPwd] = useState('')
+  /* const [uname, setUname] = useState('')
+  const [pwd, setPwd] = useState('') */
+  const formik = useFormik({
+    initialValues: {
+      uname: '',
+      pwd: ''
+    },
+    validationSchema: Yup.object({
+      pwd: Yup.string()
+        .required('No password provided.')
+        .min(8, 'Password is too short - should be 8 chars minimum.')
+        .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+      uname: Yup.string().required('Username Required')
+    }),
+    onSubmit: async (values) => {
+      try {
+        console.log('values', values)
+        const resp = await get({
+          // eslint-disable-next-line no-undef
+          url: `authentication/token/new?api_key=${process.env.REACT_APP_API_KEY}`
+        })
+        let loginResp = null
+        let loginSessionResp = null
+
+        if (resp?.status === 200) {
+          loginResp = await post({
+            // eslint-disable-next-line no-undef
+            url: `authentication/token/validate_with_login?api_key=${process.env.REACT_APP_API_KEY}`,
+            requestBody: {
+              username: formik.values.uname,
+              password: formik.values.pwd,
+              request_token: resp?.data?.request_token
+            }
+          })
+          console.log('loginResp', loginResp)
+        }
+        if (loginResp?.status === 200) {
+          loginSessionResp = await post({
+            // eslint-disable-next-line no-undef
+            url: `authentication/session/new?api_key=${process.env.REACT_APP_API_KEY}`,
+            requestBody: {
+              request_token: loginResp?.data?.request_token
+            }
+          })
+        }
+        console.log('loginSessionResp', loginSessionResp)
+        console.log(
+          'loginSessionResp?.data?.session_id',
+          loginSessionResp?.data?.session_id
+        )
+        const detailsResp = await get({
+          // eslint-disable-next-line no-undef
+          url: `account?api_key=${process.env.REACT_APP_API_KEY}&session_id=${loginSessionResp?.data?.session_id}`,
+          requestBody: {}
+        })
+        console.log('detailsResp', detailsResp)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  })
+  //console.log('formik.values', formik)
   return (
     <>
       <section className={s.wrapper}>
         <h2 className={s.loginTitle}>Login to your account</h2>
-
+        <p>
+          <a className={s.signup} href="https://www.themoviedb.org/signup">
+            Click here
+          </a>{' '}
+          to get started.
+        </p>
         <div className={s.loginForm}>
-          <fieldset className={s.loginFieldSet}>
+          <form onSubmit={formik.handleSubmit} className={s.loginFieldSet}>
             <label className={s.formLabel} htmlFor="username">
               <span>Username</span>
               <input
                 id="username"
                 className={s.formInput}
                 type="text"
-                name="username"
-                value={uname}
+                name="uname"
+                value={formik.values.uname}
                 autoCapitalize="off"
-                onChange={(e) => setUname(e.target.value)}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
             </label>
-
+            {formik.touched.uname && formik.errors.uname ? (
+              <div className={s.error}>{formik.errors.uname}</div>
+            ) : null}
             <label className={s.formLabel} htmlFor="password">
               <span>Password</span>
               <input
                 id="password"
                 className={s.formInput}
                 type="password"
-                name="password"
-                value={pwd}
-                onChange={(e) => setPwd(e.target.value)}
+                name="pwd"
+                value={formik.values.pwd}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
             </label>
-          </fieldset>
-
-          <div className={s.buttonGroup}>
-            <button id="login_button" className="button-primary" type="button">
-              Login
-            </button>
-          </div>
+            {formik.touched.pwd && formik.errors.pwd ? (
+              <div className={s.error}>{formik.errors.pwd}</div>
+            ) : null}
+            <div className={s.buttonGroup}>
+              <button
+                id="login_button"
+                className="button-primary"
+                type="submit"
+              >
+                Login
+              </button>
+              <span>
+                <a href="https://www.themoviedb.org/reset-password">
+                  Reset Password
+                </a>
+              </span>
+            </div>
+          </form>
         </div>
       </section>
     </>
