@@ -1,12 +1,23 @@
 import s from './login.module.css'
+import { useEffect } from 'react'
 import Layout from '../../components/layout/layout'
-/* import { useState } from 'react' */
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { get, post } from '../../utils/api-utils'
+import { useAppContext } from '../../context/app-context'
+import { useNavigate } from 'react-router-dom'
+import AppActions from '../../context/app-context/AppActions'
+const { REACT_APP_API_KEY } = process.env
 const LoginContent = () => {
-  /* const [uname, setUname] = useState('')
-  const [pwd, setPwd] = useState('') */
+  const { sessionId, dispatchAppContext } = useAppContext()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (sessionId) {
+      navigate('/')
+    }
+  }, [sessionId])
+
   const formik = useFormik({
     initialValues: {
       uname: '',
@@ -23,16 +34,14 @@ const LoginContent = () => {
       try {
         console.log('values', values)
         const resp = await get({
-          // eslint-disable-next-line no-undef
-          url: `authentication/token/new?api_key=${process.env.REACT_APP_API_KEY}`
+          url: `authentication/token/new?api_key=${REACT_APP_API_KEY}`
         })
         let loginResp = null
         let loginSessionResp = null
 
         if (resp?.status === 200) {
           loginResp = await post({
-            // eslint-disable-next-line no-undef
-            url: `authentication/token/validate_with_login?api_key=${process.env.REACT_APP_API_KEY}`,
+            url: `authentication/token/validate_with_login?api_key=${REACT_APP_API_KEY}`,
             requestBody: {
               username: formik.values.uname,
               password: formik.values.pwd,
@@ -43,8 +52,7 @@ const LoginContent = () => {
         }
         if (loginResp?.status === 200) {
           loginSessionResp = await post({
-            // eslint-disable-next-line no-undef
-            url: `authentication/session/new?api_key=${process.env.REACT_APP_API_KEY}`,
+            url: `authentication/session/new?api_key=${REACT_APP_API_KEY}`,
             requestBody: {
               request_token: loginResp?.data?.request_token
             }
@@ -55,12 +63,16 @@ const LoginContent = () => {
           'loginSessionResp?.data?.session_id',
           loginSessionResp?.data?.session_id
         )
-        const detailsResp = await get({
+        dispatchAppContext({
+          type: AppActions.SET_SESSION_ID,
+          data: loginSessionResp?.data?.session_id
+        })
+        /*   const detailsResp = await get({
           // eslint-disable-next-line no-undef
-          url: `account?api_key=${process.env.REACT_APP_API_KEY}&session_id=${loginSessionResp?.data?.session_id}`,
+          url: `account?api_key=${REACT_APP_API_KEY}&session_id=${loginSessionResp?.data?.session_id}`,
           requestBody: {}
         })
-        console.log('detailsResp', detailsResp)
+        console.log('detailsResp', detailsResp) */
       } catch (e) {
         console.log(e)
       }
