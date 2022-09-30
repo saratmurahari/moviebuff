@@ -1,0 +1,27 @@
+.lineLoader {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 3px;
+  background: #a5d6a7;
+  z-index: 100000;
+}
+.lineLoader:before {
+  content: '';
+  display: block;
+  background-color: #4caf50;
+  height: 3px;
+  width: 0;
+  animation: getWidth 3s ease-in infinite;
+  /*
+      animate width of different color from 0 to 100%
+      background width is of one color and 
+      before content width is a darker color
+    */
+}
+@keyframes getWidth {
+  100% {
+    width: 100%;
+  }
+}

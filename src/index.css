@@ -1,13 +1,39 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Consensus';
+  src: url('./assets/fonts/Consensus.woff2') format('woff2');
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: 'RobotoMono';
+  src: url('./assets/fonts/roboto-mono-v12-vietnamese_latin-ext_latin_greek_cyrillic-ext_cyrillic-600.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('./assets/fonts/source-sans-pro-v14-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'SourceSansProLight';
+  src: url('./assets/fonts/source-sans-pro-v14-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-300.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'SourceSansProMedium';
+  src: url('./assets/fonts/source-sans-pro-v14-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-600.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'SourceSansProRegular';
+  src: url('./assets/fonts/source-sans-pro-v14-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'SourceSansProItalic';
+  src: url('./assets/fonts/source-sans-pro-v14-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-italic.woff2')
+    format('woff2');
+}
+body {
+  margin: 0;
+  font-family: 'SourceSansProRegular';
 }

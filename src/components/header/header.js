@@ -1,6 +1,9 @@
 import s from './header.module.css'
 import classnames from 'classnames'
 import { Link } from 'react-router-dom'
+import { useAppContext } from '../../context/app-context'
+import UserDetail from './userDetail/userDetail'
+
 const navData = [
   {
     id: 1,
@@ -47,6 +50,8 @@ const navData = [
   }
 ]
 const Header = () => {
+  const { sessionId } = useAppContext()
+
   return (
     <header className={classnames(s.pageHeader)}>
       <div className={s.headerContent}>
@@ -72,7 +77,7 @@ const Header = () => {
           </ul>
         </nav>
         <div className={s.loginButton}>
-          <Link to="/login">Login</Link>
+          {sessionId ? <UserDetail /> : <Link to="/login">Login</Link>}
         </div>
       </div>
     </header>
