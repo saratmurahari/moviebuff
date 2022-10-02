@@ -1,6 +1,5 @@
 import s from './login.module.css'
 import { useEffect } from 'react'
-import Layout from '../../components/layout/layout'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { get, post } from '../../utils/api-utils'
@@ -8,7 +7,7 @@ import { useAppContext } from '../../context/app-context'
 import { useNavigate } from 'react-router-dom'
 import AppActions from '../../context/app-context/AppActions'
 const { REACT_APP_API_KEY } = process.env
-const LoginContent = () => {
+const Login = () => {
   const { sessionId, dispatchAppContext } = useAppContext()
   const navigate = useNavigate()
 
@@ -142,7 +141,7 @@ const LoginContent = () => {
     </>
   )
 }
-const Login = () => {
+/* const Login = () => {
   return <Layout content={<LoginContent />} />
-}
+} */
 export default Login

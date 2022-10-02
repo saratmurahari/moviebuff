@@ -53,7 +53,7 @@ const Header = () => {
   const { sessionId } = useAppContext()
 
   return (
-    <header className={classnames(s.pageHeader)}>
+    <div className={classnames(s.pageHeader)}>
       <div className={s.headerContent}>
         <nav className={s.navBlock}>
           <Link to="/">
@@ -80,7 +80,7 @@ const Header = () => {
           {sessionId ? <UserDetail /> : <Link to="/login">Login</Link>}
         </div>
       </div>
-    </header>
+    </div>
   )
 }
 export default Header

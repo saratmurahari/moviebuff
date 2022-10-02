@@ -1,5 +1,5 @@
 import s from './userDetail.module.css'
-/*import classnames from 'classnames' */
+import classnames from 'classnames'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../../context/app-context'
@@ -46,7 +46,9 @@ const UserDetail = () => {
           <div className={s.tooltipWrapper}>
             <div className={s.profileToolTip}>
               <div className={s.tooltipContent}>
-                <div className={s.userProfileLink}>
+                <div
+                  className={classnames(s.userProfileLink, s.firstUserProfLink)}
+                >
                   <h2>
                     <Link to={`user/${userDetails?.username}`}>
                       {userDetails?.username}
@@ -56,6 +58,14 @@ const UserDetail = () => {
                     <Link to={`user/${userDetails?.username}`}>
                       View Profile
                     </Link>
+                  </p>
+                </div>
+                <div className={s.userProfileLink}>
+                  <p>
+                    <Link to={`user/${userDetails?.username}`}>Ratings</Link>
+                  </p>
+                  <p>
+                    <Link to={`user/${userDetails?.username}`}>Logout</Link>
                   </p>
                 </div>
               </div>

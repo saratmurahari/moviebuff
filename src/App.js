@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import './assets/css/global.css'
 import AppRouter from './app-router'
 import { AppContextProvider } from './context/app-context/AppContext'
-
+import Layout from './components/layout/layout'
 //use .env
 //use react query
 //use material-ui
@@ -11,7 +11,9 @@ function App() {
     <>
       <AppContextProvider>
         <Suspense fallback="loading..">
-          <AppRouter />
+          <Layout>
+            <AppRouter />
+          </Layout>
         </Suspense>
       </AppContextProvider>
     </>
