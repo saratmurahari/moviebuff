@@ -1,0 +1,53 @@
+.centerImage {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+.centerImage img {
+  width: 100%;
+}
+.title {
+  position: absolute;
+  top: 60px;
+  padding: 0 30px;
+  box-sizing: border-box;
+  width: 100%;
+  color: #fff;
+}
+.title h2 {
+  font-size: 48px;
+  margin: 0;
+}
+.title h3 {
+  font-size: 32px;
+  margin: 0;
+}
+.searchForm {
+  margin-top: 40px;
+}
+.searchForm .searchInput {
+  width: 90%;
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  outline: none;
+}
+.searchForm .submitButton {
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 11px 26px;
+  border: none;
+  background: -webkit-linear-gradient(#1ee867, #36a3c2);
+  border-radius: 30px;
+  position: absolute;
+  top: 131px;
+  right: 61px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -10,7 +10,7 @@
 .headerContent {
   display: flex;
   flex: 1 1 auto;
-  max-width: 1300px;
+  max-width: 1200px;
   justify-content: space-between;
 }
 .navBlock {
@@ -57,6 +57,7 @@
   box-shadow: 0 2px 6px 0 #8a8a8a40;
   display: none;
   min-width: 150px;
+  z-index: 1;
 }
 .links {
   margin-right: 20px;

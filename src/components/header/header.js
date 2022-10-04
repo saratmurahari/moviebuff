@@ -28,12 +28,12 @@ const navData = [
       {
         id: 21,
         label: 'Popular',
-        routeTo: 'tv-shows/popular'
+        routeTo: 'tv/popular'
       },
       {
         id: 22,
         label: 'Top Rated',
-        routeTo: 'tv-shows/top-rated'
+        routeTo: 'tv/top-rated'
       }
     ]
   },

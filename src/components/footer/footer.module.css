@@ -1,0 +1,76 @@
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 40px;
+}
+.footerLogo {
+  display: flex;
+  flex-direction: column;
+}
+.footerGreeting {
+  position: relative;
+  top: 20px;
+  border-color: #fff;
+  background-color: #fff;
+  color: rgba(var(--tmdbLightBlue), 1);
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: normal;
+  color: #01b4e4;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 8px 16px;
+  transition: linear 0.1s;
+}
+.navBlocks {
+  display: flex;
+  flex-direction: column;
+}
+.navBlocks h3 {
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+}
+.navBlocks ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.navBlocks li {
+  padding: 0;
+  margin: 0;
+  line-height: 1.6em;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+}
+.navBlocks li a {
+  color: #fff;
+}
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  background: -webkit-linear-gradient(#1ee867, #36a3c2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-right: 10px;
+}
+.logoIcon {
+  height: 20px;
+  width: 50px;
+  border-radius: 20px;
+  background-color: #20bf55;
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+  margin-right: 10px;
+}
+.footerLogoBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
