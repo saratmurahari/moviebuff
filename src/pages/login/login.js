@@ -33,7 +33,10 @@ const Login = () => {
       try {
         console.log('values', values)
         const resp = await get({
-          url: `authentication/token/new?api_key=${REACT_APP_API_KEY}`
+          url: `authentication/token/new`,
+          params: {
+            api_key: REACT_APP_API_KEY
+          }
         })
         let loginResp = null
         let loginSessionResp = null

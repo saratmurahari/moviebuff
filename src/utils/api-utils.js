@@ -15,12 +15,12 @@ const createHeaders = (accessToken) => {
 function getBaseUrl() {
   return 'https://api.themoviedb.org/3/'
 }
-export const get = ({ url, requestBody = {}, accessToken = undefined }) => {
+export const get = ({ url, params = {}, accessToken = undefined }) => {
   const headers = createHeaders(accessToken)
   const fullUrl = `${getBaseUrl()}${url}`
   const config = {
     headers,
-    requestBody
+    params
   }
 
   return axios.get(fullUrl, config)

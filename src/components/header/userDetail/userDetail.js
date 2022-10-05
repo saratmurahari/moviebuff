@@ -19,8 +19,11 @@ const UserDetail = () => {
       if (sessionId && !isLoading) {
         setIsLoading(true)
         const detailsResp = await get({
-          url: `account?api_key=${REACT_APP_API_KEY}&session_id=${sessionId}`,
-          requestBody: {}
+          url: `account`,
+          params: {
+            api_key: REACT_APP_API_KEY,
+            session_id: sessionId
+          }
         })
         setUserDetails(detailsResp?.data)
         console.log(
