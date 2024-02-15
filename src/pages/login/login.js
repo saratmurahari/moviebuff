@@ -65,16 +65,14 @@ const Login = () => {
           'loginSessionResp?.data?.session_id',
           loginSessionResp?.data?.session_id
         )
+        sessionStorage.setItem(
+          'login_session',
+          loginSessionResp?.data?.session_id
+        )
         dispatchAppContext({
           type: AppActions.SET_SESSION_ID,
           data: loginSessionResp?.data?.session_id
         })
-        /*   const detailsResp = await get({
-          // eslint-disable-next-line no-undef
-          url: `account?api_key=${REACT_APP_API_KEY}&session_id=${loginSessionResp?.data?.session_id}`,
-          requestBody: {}
-        })
-        console.log('detailsResp', detailsResp) */
       } catch (e) {
         console.log(e)
       }

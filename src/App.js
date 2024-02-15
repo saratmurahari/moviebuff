@@ -5,6 +5,7 @@ import Loader from './components/loader/loader'
 import { AppContextProvider } from './context/app-context/AppContext'
 import Layout from './components/layout/layout'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 //use .env
 //use react query
 //use material-ui
@@ -21,6 +22,7 @@ function App() {
             </Layout>
           </Suspense>
         </AppContextProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>
   )

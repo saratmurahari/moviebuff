@@ -8,12 +8,12 @@ import { UserInfoRouter } from './pages/userInfo'
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/user" element={<UserInfoRouter />} />
       <Route path="/login" element={<Login />} />
       <Route path="/movies/:type" element={<Movies />} />
       <Route path="/tv/:type" element={<Tv />} />
       <Route path="/people/:type" element={<People />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   )
 }
