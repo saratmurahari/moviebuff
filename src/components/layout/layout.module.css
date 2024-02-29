@@ -1,15 +1,15 @@
 .main {
   display: flex;
   flex-direction: column;
-  max-width: 1300px;
+  max-width: 1200px;
   align-self: center;
   width: 100%;
 }
 .wrapper {
-  display: flex;
+  /*   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1300px; */
 }
 .footer {
   display: flex;
